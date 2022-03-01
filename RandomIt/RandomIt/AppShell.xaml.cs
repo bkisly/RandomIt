@@ -1,4 +1,4 @@
-﻿// using RandomIt.Views;
+﻿using RandomIt.Views;
 using System;
 using System.Collections.Generic;
 using Xamarin.Forms;
