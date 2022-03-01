@@ -10,13 +10,12 @@ namespace RandomIt
         public AppShell()
         {
             InitializeComponent();
+            Shell.SetTabBarIsVisible(this, false);
         }
 
-        /*
-        private async void OnMenuItemClicked(object sender, EventArgs e)
+        private async void About_Clicked(object sender, EventArgs e)
         {
-            await Shell.Current.GoToAsync("//LoginPage");
+            await Shell.Current.GoToAsync("//AboutPage");
         }
-        */
     }
 }
