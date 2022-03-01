@@ -5,8 +5,23 @@
        Title="RandomIt"
        x:Class="RandomIt.AppShell">
 
-    <FlyoutItem Title="Test page">
-        <ShellContent Route="TestPage" ContentTemplate="{DataTemplate views:TestPage}"/>
+    <FlyoutItem Title="Random number">
+        <ShellContent Route="TestPage" ContentTemplate="{DataTemplate views:RandomNumberPage}"/>
+    </FlyoutItem>
+    <FlyoutItem Title="Random string">
+        <ShellContent Route="TestPage" ContentTemplate="{DataTemplate views:RandomStringPage}"/>
+    </FlyoutItem>
+    <FlyoutItem Title="Random list element">
+        <ShellContent Route="TestPage" ContentTemplate="{DataTemplate views:RandomListElementPage}"/>
+    </FlyoutItem>
+    <FlyoutItem Title="List shuffle">
+        <ShellContent Route="TestPage" ContentTemplate="{DataTemplate views:ListShufflePage}"/>
+    </FlyoutItem>
+    <FlyoutItem Title="Dice">
+        <ShellContent Route="TestPage" ContentTemplate="{DataTemplate views:DicePage}"/>
+    </FlyoutItem>
+    <FlyoutItem Title="Coin flip">
+        <ShellContent Route="TestPage" ContentTemplate="{DataTemplate views:CoinFlipPage}"/>
     </FlyoutItem>
 
     
