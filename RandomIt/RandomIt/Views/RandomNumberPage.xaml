@@ -16,7 +16,7 @@
 
                 <StackLayout Orientation="Horizontal" Spacing="10">
                     <Entry Text="{Binding Source={x:Reference minValueStepper}, Path=Value}"
-                           HorizontalOptions="FillAndExpand"/>
+                           HorizontalOptions="FillAndExpand" Keyboard="Numeric"/>
                     <Stepper x:Name="minValueStepper" Minimum="-2000000000" 
                              Maximum="{Binding Source={x:Reference maxValueStepper}, Path=Value}"/>
                 </StackLayout>
@@ -27,7 +27,7 @@
 
                 <StackLayout Orientation="Horizontal" Spacing="10">
                     <Entry Text="{Binding Source={x:Reference maxValueStepper}, Path=Value}"
-                           HorizontalOptions="FillAndExpand"/>
+                           HorizontalOptions="FillAndExpand" Keyboard="Numeric"/>
                     <Stepper x:Name="maxValueStepper" Value="10" Maximum="2000000000"
                              Minimum="{Binding Source={x:Reference minValueStepper}, Path=Value}"/>
                 </StackLayout>
