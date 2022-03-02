@@ -1,22 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="RandomIt.Views.RandomNumberPage" Padding="20">
+             x:Class="RandomIt.Views.RandomNumberPage" 
+             Padding="20" Title="Random number">
 
     <StackLayout VerticalOptions="Start" Spacing="20">
-        <StackLayout Orientation="Horizontal" Spacing="10" HorizontalOptions="CenterAndExpand">
+        <StackLayout Spacing="10">
             <RadioButton Content="Integer number" IsChecked="True"/>
             <RadioButton x:Name="floatRadioButton" Content="Floating-point number"/>
         </StackLayout>
 
-        <StackLayout Spacing="20" Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+        <StackLayout Spacing="20">
             <StackLayout Spacing="10">
                 <Label Text="Minimum value"/>
 
                 <StackLayout Orientation="Horizontal" Spacing="10">
+                    <Entry Text="{Binding Source={x:Reference minValueStepper}, Path=Value}"
+                           HorizontalOptions="FillAndExpand"/>
                     <Stepper x:Name="minValueStepper" Minimum="-2000000000" 
-                             Maximum="{Binding Source={x:Reference maxValueStepper}, Path=Value}}"/>
-                    <Entry Text="{Binding Source={x:Reference minValueStepper}, Path=Value}"/>
+                             Maximum="{Binding Source={x:Reference maxValueStepper}, Path=Value}"/>
                 </StackLayout>
             </StackLayout>
 
@@ -24,9 +26,10 @@
                 <Label Text="Maximum value"/>
 
                 <StackLayout Orientation="Horizontal" Spacing="10">
+                    <Entry Text="{Binding Source={x:Reference maxValueStepper}, Path=Value}"
+                           HorizontalOptions="FillAndExpand"/>
                     <Stepper x:Name="maxValueStepper" Value="10" Maximum="2000000000"
                              Minimum="{Binding Source={x:Reference minValueStepper}, Path=Value}"/>
-                    <Entry Text="{Binding Source={x:Reference maxValueStepper}, Path=Value}"/>
                 </StackLayout>
             </StackLayout>
 
@@ -34,10 +37,11 @@
                 <Label Text="Precision"/>
                 <StackLayout Orientation="Horizontal" Spacing="10"
                              BindingContext="{x:Reference floatRadioButton}">
+                    <Label VerticalTextAlignment="Center" IsEnabled="{Binding IsChecked}"
+                        Text="{Binding Source={x:Reference precisionStepper}, Path=Value}"
+                           HorizontalOptions="StartAndExpand" FontSize="16"/>
                     <Stepper x:Name="precisionStepper" Minimum="1" Maximum="10" Value="1"
                              IsEnabled="{Binding IsChecked}"/>
-                    <Label VerticalTextAlignment="Center" IsEnabled="{Binding IsChecked}"
-                        Text="{Binding Source={x:Reference precisionStepper}, Path=Value}"/>
                 </StackLayout>
             </StackLayout>
         </StackLayout>
