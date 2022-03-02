@@ -1,12 +1,37 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="RandomIt.Views.RandomListElementPage">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+             x:Class="RandomIt.Views.RandomListElementPage"
+             Padding="20" Title="Random list element">
+
+    <StackLayout Spacing="20" VerticalOptions="Start">
+        <Label Text="New element" FontSize="16"/>
+
+        <StackLayout Spacing="10" Orientation="Horizontal">
+            <Entry Placeholder="Type element name..." HorizontalOptions="FillAndExpand"/>
+            <Button Text="Add"/>
         </StackLayout>
-    </ContentPage.Content>
+
+
+        <ListView x:Name="listView" SelectionMode="None">
+            <ListView.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>First</x:String>
+                    <x:String>Second</x:String>
+                    <x:String>Third</x:String>
+                </x:Array>
+            </ListView.ItemsSource>
+            
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding}"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Label Text="ASKDAS" HorizontalTextAlignment="Center" FontSize="20"/>
+        <Button Text="Choose random!"/>
+
+    </StackLayout>
+    
 </ContentPage>
