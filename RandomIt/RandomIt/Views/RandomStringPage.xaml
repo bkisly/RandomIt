@@ -1,12 +1,40 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="RandomIt.Views.RandomStringPage">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+             x:Class="RandomIt.Views.RandomStringPage"
+             Padding="20" Title="Random string">
+
+    <StackLayout Spacing="20" VerticalOptions="Start">
+        <StackLayout Orientation="Horizontal" Spacing="10">
+            <CheckBox IsChecked="True"/>
+            <Label Text="Contain uppercase letters" VerticalTextAlignment="Center"/>
         </StackLayout>
-    </ContentPage.Content>
+        <StackLayout Orientation="Horizontal" Spacing="10">
+            <CheckBox IsChecked="True"/>
+            <Label Text="Contain lowercase letters" VerticalTextAlignment="Center"/>
+        </StackLayout>
+        <StackLayout Orientation="Horizontal" Spacing="10">
+            <CheckBox IsChecked="True"/>
+            <Label Text="Contain numbers" VerticalTextAlignment="Center"/>
+        </StackLayout>
+        <StackLayout Orientation="Horizontal" Spacing="10">
+            <CheckBox IsChecked="True"/>
+            <Label Text="Contain special characters" VerticalTextAlignment="Center"/>
+        </StackLayout>
+
+        <Label Text="Text length" FontSize="16"/>
+        <StackLayout Orientation="Horizontal" Spacing="10">
+            <Label FontSize="16" HorizontalOptions="CenterAndExpand" VerticalTextAlignment="Center"
+                   Text="{Binding Source={x:Reference stringLengthStepper}, Path=Value}"/>
+            <Stepper x:Name="stringLengthStepper" Minimum="1" Maximum="20" Value="10"/>
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal" Spacing="10">
+            <Button Text="Generate!" HorizontalOptions="FillAndExpand"/>
+            <Button Text="Copy" HorizontalOptions="FillAndExpand"/>
+        </StackLayout>
+
+        <Label HorizontalTextAlignment="Center" FontSize="24" Text="ABCDEFGHIJKLMNOPRSTU"/>
+    </StackLayout>
+    
 </ContentPage>
