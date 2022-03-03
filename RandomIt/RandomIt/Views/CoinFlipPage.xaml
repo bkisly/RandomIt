@@ -1,12 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="RandomIt.Views.CoinFlipPage">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+             x:Class="RandomIt.Views.CoinFlipPage"
+             Padding="20" Title="Coin flip">
+    <StackLayout Spacing="20" VerticalOptions="Start">
+        <Label Text="Coins amount" FontSize="16"/>
+
+        <StackLayout Spacing="10" Orientation="Horizontal">
+            <Label HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+                   Text="{Binding Source={x:Reference coinsAmountStepper}, Path=Value}"/>
+            <Stepper x:Name="coinsAmountStepper" Minimum="1" Maximum="10"/>
         </StackLayout>
-    </ContentPage.Content>
+
+        <Button Text="Flip the coins!"/>
+    </StackLayout>
 </ContentPage>
