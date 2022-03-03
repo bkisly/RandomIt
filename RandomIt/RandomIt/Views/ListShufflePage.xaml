@@ -1,12 +1,43 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="RandomIt.Views.ListShufflePage">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+             x:Class="RandomIt.Views.ListShufflePage"
+             Padding="20" Title="List shuffle">
+    <StackLayout Spacing="20">
+        <Label Text="New element" FontSize="16"/>
+        <StackLayout Spacing="10" Orientation="Horizontal">
+            <Entry Placeholder="Type element name here..." HorizontalOptions="FillAndExpand"/>
+            <Button Text="Add"/>
         </StackLayout>
-    </ContentPage.Content>
+
+        <Grid RowSpacing="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="3*"/>
+            </Grid.RowDefinitions>
+
+            <ListView SelectionMode="None">
+                <ListView.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>First</x:String>
+                        <x:String>Second</x:String>
+                        <x:String>Third</x:String>
+                    </x:Array>
+                </ListView.ItemsSource>
+            </ListView>
+
+            <Button Text="Shuffle!" Grid.Row="1"/>
+
+            <ListView SelectionMode="None" Grid.Row="2">
+                <ListView.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>First</x:String>
+                        <x:String>Second</x:String>
+                        <x:String>Third</x:String>
+                    </x:Array>
+                </ListView.ItemsSource>
+            </ListView>
+        </Grid>
+    </StackLayout>
 </ContentPage>
