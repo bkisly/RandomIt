@@ -12,7 +12,6 @@
             <Button Text="Add"/>
         </StackLayout>
 
-
         <ListView x:Name="listView" SelectionMode="None">
             <ListView.ItemsSource>
                 <x:Array Type="{x:Type x:String}">
