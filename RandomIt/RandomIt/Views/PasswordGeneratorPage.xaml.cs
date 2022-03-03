@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace RandomIt.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class RandomStringPage : ContentPage
+    public partial class PasswordGeneratorPage : ContentPage
     {
-        public RandomStringPage()
+        public PasswordGeneratorPage()
         {
             InitializeComponent();
         }

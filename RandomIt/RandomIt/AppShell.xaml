@@ -7,7 +7,7 @@
 
     <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
         <ShellContent Route="RandomNumberPage" Title="Random number" ContentTemplate="{DataTemplate views:RandomNumberPage}"/>
-        <ShellContent Title="Random string" ContentTemplate="{DataTemplate views:RandomStringPage}"/>
+        <ShellContent Title="Password generator" ContentTemplate="{DataTemplate views:PasswordGeneratorPage}"/>
         <ShellContent Title="Random list element" ContentTemplate="{DataTemplate views:RandomListElementPage}"/>
         <ShellContent Title="List shuffle" ContentTemplate="{DataTemplate views:ListShufflePage}"/>
         <ShellContent Title="Dice roll" ContentTemplate="{DataTemplate views:DicePage}"/>

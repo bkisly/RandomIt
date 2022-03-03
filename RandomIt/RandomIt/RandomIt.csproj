@@ -11,6 +11,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\PasswordGeneratorPage.xaml.cs">
+      <DependentUpon>PasswordGeneratorPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
     <EmbeddedResource Update="Views\AboutPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -29,7 +35,7 @@
     <EmbeddedResource Update="Views\RandomNumberPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\RandomStringPage.xaml">
+    <EmbeddedResource Update="Views\PasswordGeneratorPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
