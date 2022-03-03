@@ -10,7 +10,7 @@
         <ShellContent Title="Random string" ContentTemplate="{DataTemplate views:RandomStringPage}"/>
         <ShellContent Title="Random list element" ContentTemplate="{DataTemplate views:RandomListElementPage}"/>
         <ShellContent Title="List shuffle" ContentTemplate="{DataTemplate views:ListShufflePage}"/>
-        <ShellContent Title="Dice" ContentTemplate="{DataTemplate views:DicePage}"/>
+        <ShellContent Title="Dice roll" ContentTemplate="{DataTemplate views:DicePage}"/>
         <ShellContent Title="Coin flip" ContentTemplate="{DataTemplate views:CoinFlipPage}"/>
     </FlyoutItem>
 
