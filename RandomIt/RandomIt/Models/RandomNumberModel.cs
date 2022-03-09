@@ -15,6 +15,9 @@ namespace RandomIt.Models
         public RandomNumberModel()
         {
             _random = new Random();
+            MinValue = 0;
+            MaxValue = 10;
+            Precision = 1;
         }
 
         public int GenerateRandomInt()
@@ -24,9 +27,10 @@ namespace RandomIt.Models
 
         public double GenerateRandomDouble()
         {
-            int min = (int)MinValue * Precision;
-            int max = (int)MaxValue * Precision;
-            return (double)_random.Next(min, max) / (double)Precision;
+            int poweredPrecision = (int)Math.Pow(10, Precision);
+            int min = (int)MinValue * poweredPrecision;
+            int max = (int)MaxValue * poweredPrecision;
+            return (double)_random.Next(min, max) / poweredPrecision;
         }
     }
 }

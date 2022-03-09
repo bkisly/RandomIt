@@ -15,7 +15,8 @@
     <StackLayout VerticalOptions="Start" Spacing="20" BindingContext="{StaticResource viewModel}">
         <StackLayout Spacing="10">
             <RadioButton Content="Integer number" IsChecked="True"/>
-            <RadioButton x:Name="floatRadioButton" Content="Floating-point number"/>
+            <RadioButton x:Name="floatRadioButton" Content="Floating-point number" 
+                         IsChecked="{Binding FloatGeneration, Mode=OneWayToSource}"/>
         </StackLayout>
 
         <StackLayout Spacing="20">
@@ -25,10 +26,10 @@
                 <StackLayout Orientation="Horizontal" Spacing="10">
                     <Entry Text="{Binding Source={x:Reference minValueStepper}, Path=Value}"
                            HorizontalOptions="FillAndExpand" Keyboard="Numeric"/>
-                    <Stepper x:Name="minValueStepper" Minimum="-2000000000" 
+                    <Stepper x:Name="minValueStepper" Minimum="-2000000" 
                              Maximum="{Binding Source={x:Reference maxValueStepper}, Path=Value}"
                              Value="{Binding MinValue, Mode=TwoWay}"
-                             Increment="{Binding Precision, Converter={StaticResource precisionToStepConverter}}"/>
+                             Increment="{Binding Increment}"/>
                 </StackLayout>
             </StackLayout>
 
@@ -38,22 +39,22 @@
                 <StackLayout Orientation="Horizontal" Spacing="10">
                     <Entry Text="{Binding Source={x:Reference maxValueStepper}, Path=Value}"
                            HorizontalOptions="FillAndExpand" Keyboard="Numeric"/>
-                    <Stepper x:Name="maxValueStepper" Maximum="2000000000"
+                    <Stepper x:Name="maxValueStepper" Maximum="2000000"
                              Minimum="{Binding Source={x:Reference minValueStepper}, Path=Value}"
                              Value="{Binding MaxValue, Mode=TwoWay}"
-                             Increment="{Binding Precision, Converter={StaticResource precisionToStepConverter}}"/>
+                             Increment="{Binding Increment}"/>
                 </StackLayout>
             </StackLayout>
 
             <StackLayout Spacing="10">
                 <Label Text="Precision"/>
-                <StackLayout Orientation="Horizontal" Spacing="10"
-                             BindingContext="{x:Reference floatRadioButton}">
-                    <Label VerticalTextAlignment="Center" IsEnabled="{Binding IsChecked}"
+                <StackLayout Orientation="Horizontal" Spacing="10">
+                    <Label VerticalTextAlignment="Center" IsEnabled="{Binding FloatGeneration}"
                         Text="{Binding Source={x:Reference precisionStepper}, Path=Value}"
                            HorizontalOptions="StartAndExpand" FontSize="16"/>
-                    <Stepper x:Name="precisionStepper" Minimum="1" Maximum="10" Value="1"
-                             IsEnabled="{Binding IsChecked}"/>
+                    <Stepper x:Name="precisionStepper" Minimum="1" Maximum="3"
+                             IsEnabled="{Binding FloatGeneration}" 
+                             Value="{Binding Precision, Mode=OneWayToSource}"/>
                 </StackLayout>
             </StackLayout>
         </StackLayout>
@@ -61,7 +62,7 @@
         <Button Text="Generate!" Clicked="GenerateButton_Clicked"/>
 
         <Label Text="{Binding GeneratedValue, Converter={StaticResource numberTypeConverter},
-            ConverterParameter={Binding Source={x:Reference floatRadioButton}, Path=IsChecked}}" 
+            ConverterParameter={Binding FloatGeneration}}" 
                FontSize="30" HorizontalTextAlignment="Center"/>
     </StackLayout>
 </ContentPage>

@@ -10,6 +10,8 @@ namespace RandomIt.ViewModels
     {
         private RandomNumberModel _randomNumberModel;
 
+        // TODO: Add increment to the view model and info about generation type, add property changed event
+
         public double MinValue
         {
             get { return _randomNumberModel.MinValue; }
@@ -26,6 +28,26 @@ namespace RandomIt.ViewModels
             set { _randomNumberModel.Precision = value; }
         }
         public double GeneratedValue { get; private set; }
+
+        private bool _floatGeneration;
+        public bool FloatGeneration
+        {
+            get { return _floatGeneration; }
+            set 
+            { 
+                _floatGeneration = value;
+                OnPropertyChanged(nameof(FloatGeneration));
+                OnPropertyChanged(nameof(Increment));
+            }
+        }
+        public double Increment 
+        { 
+            get 
+            {
+                if (FloatGeneration) return 1 / Math.Pow(10, Precision);
+                else return 1;
+             } 
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
