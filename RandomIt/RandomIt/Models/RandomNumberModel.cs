@@ -27,10 +27,10 @@ namespace RandomIt.Models
 
         public double GenerateRandomDouble()
         {
-            int poweredPrecision = (int)Math.Pow(10, Precision);
-            int min = (int)MinValue * poweredPrecision;
-            int max = (int)MaxValue * poweredPrecision;
-            return (double)_random.Next(min, max) / poweredPrecision;
+            double distance = MaxValue - MinValue;
+            double value = _random.NextDouble() * distance + MinValue;
+
+            return Math.Round(value, Precision);
         }
     }
 }

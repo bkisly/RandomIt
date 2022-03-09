@@ -8,7 +8,6 @@
 
     <ContentPage.Resources>
         <viewModel:RandomNumberViewModel x:Name="viewModel" x:Key="viewModel"/>
-        <converters:PrecisionToStepConverter x:Key="precisionToStepConverter"/>
         <converters:RandomNumberTypeConverter x:Key="numberTypeConverter"/>
     </ContentPage.Resources>
 
