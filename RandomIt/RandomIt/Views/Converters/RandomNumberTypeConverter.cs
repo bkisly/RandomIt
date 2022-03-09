@@ -14,7 +14,7 @@ namespace RandomIt.Views.Converters
             {
                 if(parameter is bool boolParameter)
                 {
-                    if (boolParameter) return (int)value;
+                    if (!boolParameter) return (int)value;
                 }
                 
                 return doubleValue;

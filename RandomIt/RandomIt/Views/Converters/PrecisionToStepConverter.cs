@@ -10,9 +10,9 @@ namespace RandomIt.Views.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if(value is int)
+            if(value is int intValue)
             {
-                return 1 / Math.Pow(10, (int)value);
+                return 1 / Math.Pow(10, intValue);
             }
 
             return null;

@@ -1,10 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="RandomIt.Views.RandomNumberPage" 
+             x:Class="RandomIt.Views.RandomNumberPage"
+             xmlns:viewModel="clr-namespace:RandomIt.ViewModels"
+             xmlns:converters="clr-namespace:RandomIt.Views.Converters"
              Padding="20" Title="Random number">
 
-    <StackLayout VerticalOptions="Start" Spacing="20">
+    <ContentPage.Resources>
+        <viewModel:RandomNumberViewModel x:Name="viewModel" x:Key="viewModel"/>
+        <converters:PrecisionToStepConverter x:Key="precisionToStepConverter"/>
+        <converters:RandomNumberTypeConverter x:Key="numberTypeConverter"/>
+    </ContentPage.Resources>
+
+    <StackLayout VerticalOptions="Start" Spacing="20" BindingContext="{StaticResource viewModel}">
         <StackLayout Spacing="10">
             <RadioButton Content="Integer number" IsChecked="True"/>
             <RadioButton x:Name="floatRadioButton" Content="Floating-point number"/>
@@ -18,7 +26,9 @@
                     <Entry Text="{Binding Source={x:Reference minValueStepper}, Path=Value}"
                            HorizontalOptions="FillAndExpand" Keyboard="Numeric"/>
                     <Stepper x:Name="minValueStepper" Minimum="-2000000000" 
-                             Maximum="{Binding Source={x:Reference maxValueStepper}, Path=Value}"/>
+                             Maximum="{Binding Source={x:Reference maxValueStepper}, Path=Value}"
+                             Value="{Binding MinValue, Mode=TwoWay}"
+                             Increment="{Binding Precision, Converter={StaticResource precisionToStepConverter}}"/>
                 </StackLayout>
             </StackLayout>
 
@@ -28,8 +38,10 @@
                 <StackLayout Orientation="Horizontal" Spacing="10">
                     <Entry Text="{Binding Source={x:Reference maxValueStepper}, Path=Value}"
                            HorizontalOptions="FillAndExpand" Keyboard="Numeric"/>
-                    <Stepper x:Name="maxValueStepper" Value="10" Maximum="2000000000"
-                             Minimum="{Binding Source={x:Reference minValueStepper}, Path=Value}"/>
+                    <Stepper x:Name="maxValueStepper" Maximum="2000000000"
+                             Minimum="{Binding Source={x:Reference minValueStepper}, Path=Value}"
+                             Value="{Binding MaxValue, Mode=TwoWay}"
+                             Increment="{Binding Precision, Converter={StaticResource precisionToStepConverter}}"/>
                 </StackLayout>
             </StackLayout>
 
@@ -46,8 +58,10 @@
             </StackLayout>
         </StackLayout>
 
-        <Button Text="Generate!"/>
+        <Button Text="Generate!" Clicked="GenerateButton_Clicked"/>
 
-        <Label Text="123123123" FontSize="30" HorizontalTextAlignment="Center"/>
+        <Label Text="{Binding GeneratedValue, Converter={StaticResource numberTypeConverter},
+            ConverterParameter={Binding Source={x:Reference floatRadioButton}, Path=IsChecked}}" 
+               FontSize="30" HorizontalTextAlignment="Center"/>
     </StackLayout>
 </ContentPage>
