@@ -10,16 +10,14 @@ namespace RandomIt.Views.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if(value is double)
+            if(value is double doubleValue)
             {
-                if(parameter is bool)
+                if(parameter is bool boolParameter)
                 {
-                    if ((bool)parameter)
-                    {
-                        return (int)value;
-                    }
-                    else return (double)value;
+                    if (boolParameter) return (int)value;
                 }
+                
+                return doubleValue;
             }
 
             return null;
