@@ -16,5 +16,12 @@ namespace RandomIt.Views
         {
             InitializeComponent();
         }
+
+        private void GenerateButton_Clicked(object sender, EventArgs e)
+        {
+            if (viewModel.FloatGeneration)
+                viewModel.GenerateRandomDouble();
+            else viewModel.GenerateRandomInt();
+        }
     }
 }
