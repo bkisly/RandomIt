@@ -16,5 +16,16 @@ namespace RandomIt.Views
         {
             InitializeComponent();
         }
+
+        private void GenerateButton_Clicked(object sender, EventArgs e)
+        {
+            viewModel.GeneratePassword();
+        }
+
+        private async void CopyButton_Clicked(object sender, EventArgs e)
+        {
+            await viewModel.CopyPasswordToClipboard();
+            await DisplayAlert("Copied!", "The password has been successfully copied!", "OK");
+        }
     }
 }
