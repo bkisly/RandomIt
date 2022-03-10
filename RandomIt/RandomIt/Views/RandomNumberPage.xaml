@@ -3,18 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RandomIt.Views.RandomNumberPage"
              xmlns:viewModel="clr-namespace:RandomIt.ViewModels"
-             xmlns:converters="clr-namespace:RandomIt.Views.Converters"
              Padding="20" Title="Random number">
 
     <ContentPage.Resources>
         <viewModel:RandomNumberViewModel x:Name="viewModel" x:Key="viewModel"/>
-        <converters:RandomNumberTypeConverter x:Key="numberTypeConverter"/>
     </ContentPage.Resources>
 
     <StackLayout VerticalOptions="Start" Spacing="20" BindingContext="{StaticResource viewModel}">
         <StackLayout Spacing="10">
             <RadioButton Content="Integer number" IsChecked="True"/>
-            <RadioButton x:Name="floatRadioButton" Content="Floating-point number" 
+            <RadioButton Content="Floating-point number" 
                          IsChecked="{Binding FloatGeneration, Mode=OneWayToSource}"/>
         </StackLayout>
 
@@ -60,8 +58,7 @@
 
         <Button Text="Generate!" Clicked="GenerateButton_Clicked"/>
 
-        <Label Text="{Binding GeneratedValue, Converter={StaticResource numberTypeConverter},
-            ConverterParameter={Binding FloatGeneration}}" 
+        <Label Text="{Binding GeneratedValue}" 
                FontSize="30" HorizontalTextAlignment="Center"/>
     </StackLayout>
 </ContentPage>

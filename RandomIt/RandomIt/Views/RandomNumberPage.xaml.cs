@@ -19,7 +19,7 @@ namespace RandomIt.Views
 
         private void GenerateButton_Clicked(object sender, EventArgs e)
         {
-            if (floatRadioButton.IsChecked)
+            if (viewModel.FloatGeneration)
                 viewModel.GenerateRandomDouble();
             else viewModel.GenerateRandomInt();
         }
