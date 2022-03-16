@@ -16,5 +16,21 @@ namespace RandomIt.Views
         {
             InitializeComponent();
         }
+
+        private void DeleteItem_Clicked(object sender, EventArgs e)
+        {
+            string element = (sender as MenuItem).CommandParameter.ToString();
+            viewModel.RemoveElement(element);
+        }
+
+        private void RandomButton_Clicked(object sender, EventArgs e)
+        {
+            viewModel.ChooseRandom();
+        }
+
+        private void AddButton_Clicked(object sender, EventArgs e)
+        {
+            viewModel.AddElement(elementNameEntry.Text);
+        }
     }
 }

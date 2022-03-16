@@ -20,6 +20,11 @@ namespace RandomIt.ViewModels
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+        public RandomListElementViewModel()
+        {
+            _model = new RandomListElementModel();
+        }
+
         public void ChooseRandom()
         {
             RandomElement = _model.ChooseRandom();
