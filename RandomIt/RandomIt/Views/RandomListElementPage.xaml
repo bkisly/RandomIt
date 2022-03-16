@@ -13,16 +13,22 @@
         <Label Text="New element" FontSize="16"/>
 
         <StackLayout Spacing="10" Orientation="Horizontal">
-            <Entry x:Name="elementNameEntry" Placeholder="Type element name..." HorizontalOptions="FillAndExpand"/>
-            <Button Text="Add" Clicked="AddButton_Clicked"/>
+            <Entry x:Name="elementNameEntry" Placeholder="Type element name..." HorizontalOptions="FillAndExpand"
+                   Text="{Binding ElementName, Mode=OneWayToSource}"/>
+            <Button Text="Add" Clicked="AddButton_Clicked" IsEnabled="{Binding IsElementNotEmpty}"/>
         </StackLayout>
 
-        <CollectionView x:Name="listView" SelectionMode="Multiple" ItemsSource="{Binding Elements}">
-        </CollectionView>
+        <StackLayout Spacing="10" Orientation="Horizontal">
+            <Button Text="Clear the list" HorizontalOptions="FillAndExpand" Clicked="ClearButton_Clicked"
+                    IsEnabled="{Binding ContainsElements}"/>
+            <Button Text="Delete selected" HorizontalOptions="FillAndExpand" Clicked="DeleteButton_Clicked"
+                    IsEnabled="{Binding ContainsSelectedElements}"/>
+        </StackLayout>
+
+        <CollectionView x:Name="collectionView" SelectionMode="Multiple" ItemsSource="{Binding Elements}"
+                        SelectionChanged="collectionView_SelectionChanged"/>
 
         <Label Text="{Binding RandomElement}" HorizontalTextAlignment="Center" FontSize="20"/>
-        <Button Text="Choose random!" IsEnabled="{Binding RandomChoicePossible}" Clicked="RandomButton_Clicked"/>
-
+        <Button Text="Choose random!" IsEnabled="{Binding ContainsElements}" Clicked="RandomButton_Clicked"/>
     </StackLayout>
-    
 </ContentPage>

@@ -36,5 +36,10 @@ namespace RandomIt.Models
         {
             Elements.RemoveAt(elementId);
         }
+
+        public void ClearElements()
+        {
+            Elements.Clear();
+        }
     }
 }
