@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 
 namespace RandomIt.Models
@@ -7,10 +7,11 @@ namespace RandomIt.Models
     internal class RandomListElementModel
     {
         private  readonly Random _random;
-        public List<string> Elements { get; private set; }
+        public ObservableCollection<string> Elements { get; private set; }
 
         public RandomListElementModel()
         {
+            Elements = new ObservableCollection<string>();
             _random = new Random();
         }
 
