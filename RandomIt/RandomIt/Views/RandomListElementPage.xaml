@@ -2,35 +2,33 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RandomIt.Views.RandomListElementPage"
+             xmlns:viewModels="clr-namespace:RandomIt.ViewModels"
              Padding="20" Title="Random list element">
 
-    <StackLayout Spacing="20" VerticalOptions="Start">
+    <ContentPage.Resources>
+        <viewModels:RandomListElementViewModel x:Name="viewModel" x:Key="viewModel"/>
+    </ContentPage.Resources>
+
+    <StackLayout Spacing="20" VerticalOptions="Start" BindingContext="{StaticResource viewModel}">
         <Label Text="New element" FontSize="16"/>
 
         <StackLayout Spacing="10" Orientation="Horizontal">
-            <Entry Placeholder="Type element name..." HorizontalOptions="FillAndExpand"/>
-            <Button Text="Add"/>
+            <Entry x:Name="elementNameEntry" Placeholder="Type element name..." HorizontalOptions="FillAndExpand"
+                   Text="{Binding ElementName, Mode=OneWayToSource}"/>
+            <Button Text="Add" Clicked="AddButton_Clicked" IsEnabled="{Binding IsElementNotEmpty}"/>
         </StackLayout>
 
-        <ListView x:Name="listView" SelectionMode="None">
-            <ListView.ItemsSource>
-                <x:Array Type="{x:Type x:String}">
-                    <x:String>First</x:String>
-                    <x:String>Second</x:String>
-                    <x:String>Third</x:String>
-                </x:Array>
-            </ListView.ItemsSource>
-            
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <TextCell Text="{Binding}"/>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+        <StackLayout Spacing="10" Orientation="Horizontal">
+            <Button Text="Clear the list" HorizontalOptions="FillAndExpand" Clicked="ClearButton_Clicked"
+                    IsEnabled="{Binding ContainsElements}"/>
+            <Button Text="Delete selected" HorizontalOptions="FillAndExpand" Clicked="DeleteButton_Clicked"
+                    IsEnabled="{Binding ContainsSelectedElements}"/>
+        </StackLayout>
 
-        <Label Text="ASKDAS" HorizontalTextAlignment="Center" FontSize="20"/>
-        <Button Text="Choose random!"/>
+        <CollectionView x:Name="collectionView" SelectionMode="Multiple" ItemsSource="{Binding Elements}"
+                        SelectionChanged="CollectionView_SelectionChanged"/>
 
+        <Label Text="{Binding RandomElement}" HorizontalTextAlignment="Center" FontSize="20"/>
+        <Button Text="Choose random!" IsEnabled="{Binding ContainsElements}" Clicked="RandomButton_Clicked"/>
     </StackLayout>
-    
 </ContentPage>
