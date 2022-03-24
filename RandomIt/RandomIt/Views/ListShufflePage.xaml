@@ -2,12 +2,19 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RandomIt.Views.ListShufflePage"
+             xmlns:viewModels="clr-namespace:RandomIt.ViewModels"
              Padding="20" Title="List shuffle">
-    <StackLayout Spacing="20">
+
+    <ContentPage.Resources>
+        <viewModels:ListShuffleViewModel x:Name="viewModel" x:Key="viewModel"/>
+    </ContentPage.Resources>
+    
+    <StackLayout Spacing="20" BindingContext="{StaticResource viewModel}">
         <Label Text="New element" FontSize="16"/>
         <StackLayout Spacing="10" Orientation="Horizontal">
-            <Entry Placeholder="Type element name here..." HorizontalOptions="FillAndExpand"/>
-            <Button Text="Add"/>
+            <Entry Placeholder="Type element name here..." HorizontalOptions="FillAndExpand" 
+                   Text="{Binding ElementName, Mode=OneWayToSource}"/>
+            <Button Text="Add" Clicked="AddButton_Clicked" IsEnabled="{Binding IsElementNameNotEmpty}"/>
         </StackLayout>
 
         <Grid RowSpacing="10">
@@ -17,27 +24,19 @@
                 <RowDefinition Height="3*"/>
             </Grid.RowDefinitions>
 
-            <ListView SelectionMode="None">
-                <ListView.ItemsSource>
-                    <x:Array Type="{x:Type x:String}">
-                        <x:String>First</x:String>
-                        <x:String>Second</x:String>
-                        <x:String>Third</x:String>
-                    </x:Array>
-                </ListView.ItemsSource>
-            </ListView>
+            <CollectionView x:Name="addedElements" SelectionMode="Multiple" ItemsSource="{Binding Elements}" 
+                            SelectionChanged="CollectionView_SelectionChanged"/>
 
-            <Button Text="Shuffle!" Grid.Row="1"/>
+            <StackLayout Orientation="Horizontal" Grid.Row="1" Spacing="10">
+                <Button Text="Clear elements" Clicked="ClearButton_Clicked" 
+                        IsEnabled="{Binding ContainsElements}"/>
+                <Button Text="Shuffle!" Grid.Row="1" Clicked="ShuffleButton_Clicked" 
+                        IsEnabled="{Binding ContainsElements}"/>
+                <Button Text="Remove selected" Clicked="RemoveSelected_Button" 
+                        IsEnabled="{Binding ContainsSelectedElements}"/>
+            </StackLayout>
 
-            <ListView SelectionMode="None" Grid.Row="2">
-                <ListView.ItemsSource>
-                    <x:Array Type="{x:Type x:String}">
-                        <x:String>First</x:String>
-                        <x:String>Second</x:String>
-                        <x:String>Third</x:String>
-                    </x:Array>
-                </ListView.ItemsSource>
-            </ListView>
+            <ListView SelectionMode="None" Grid.Row="2" ItemsSource="{Binding ShuffledElements}"/>
         </Grid>
     </StackLayout>
 </ContentPage>

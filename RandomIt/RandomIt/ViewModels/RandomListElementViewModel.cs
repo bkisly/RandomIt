@@ -75,6 +75,8 @@ namespace RandomIt.ViewModels
             foreach(ListElement element in selectedElementsCopy)
                 _model.RemoveElement(element);
 
+            _selectedElements.Clear();
+
             OnPropertyChanged(nameof(ContainsElements));
             OnPropertyChanged(nameof(ContainsSelectedElements));
         }
@@ -82,6 +84,7 @@ namespace RandomIt.ViewModels
         public void ClearElements()
         {
             _model.ClearElements();
+            _selectedElements.Clear();
 
             OnPropertyChanged(nameof(ContainsElements));
             OnPropertyChanged(nameof(ContainsSelectedElements));

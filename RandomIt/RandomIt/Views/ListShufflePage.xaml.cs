@@ -16,5 +16,30 @@ namespace RandomIt.Views
         {
             InitializeComponent();
         }
+
+        private void AddButton_Clicked(object sender, EventArgs e)
+        {
+            viewModel.AddElement();
+        }
+
+        private void CollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            viewModel.SelectedElements = addedElements.SelectedItems;
+        }
+
+        private void ClearButton_Clicked(object sender, EventArgs e)
+        {
+            viewModel.ClearElements();
+        }
+
+        private void ShuffleButton_Clicked(object sender, EventArgs e)
+        {
+            viewModel.Shuffle();
+        }
+
+        private void RemoveSelected_Button(object sender, EventArgs e)
+        {
+            viewModel.RemoveSelected();
+        }
     }
 }

@@ -32,7 +32,7 @@ namespace RandomIt.ViewModels
             set 
             {
                 _selectedElements = value;
-                OnPropertyChanged(nameof(SelectedElements));
+                OnPropertyChanged(nameof(ContainsSelectedElements));
             }
         }
 
@@ -70,8 +70,10 @@ namespace RandomIt.ViewModels
             object[] selectedElementsCopy = new object[_selectedElements.Count];
             _selectedElements.CopyTo(selectedElementsCopy, 0);
 
-            foreach(ListElement element in _selectedElements)
+            foreach(ListElement element in selectedElementsCopy)
                 _model.RemoveElement(element);
+
+            _selectedElements.Clear();
 
             OnPropertyChanged(nameof(ContainsElements));
             OnPropertyChanged(nameof(ContainsSelectedElements));
@@ -80,6 +82,7 @@ namespace RandomIt.ViewModels
         public void ClearElements()
         {
             _model.ClearElements();
+            _selectedElements.Clear();
 
             OnPropertyChanged(nameof(ContainsElements));
             OnPropertyChanged(nameof(ContainsSelectedElements));
