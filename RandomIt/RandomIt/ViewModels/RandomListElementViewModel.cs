@@ -4,7 +4,6 @@ using System.Text;
 using RandomIt.Models;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
-using Xamarin;
 
 namespace RandomIt.ViewModels
 {
@@ -12,7 +11,10 @@ namespace RandomIt.ViewModels
     {
         private readonly RandomListElementModel _model;
 
-        public ObservableCollection<string> Elements { get { return _model.Elements; } }
+        public ObservableCollection<ListElement> Elements 
+        { 
+            get { return _model.Elements; } 
+        }
 
         private IList<object> _selectedElements;
         public IList<object> SelectedElements
@@ -56,25 +58,24 @@ namespace RandomIt.ViewModels
 
         public RandomListElementViewModel()
         {
-            //_selectedElements = new ObservableCollection<object>();
             _model = new RandomListElementModel();
         }
 
         public void ChooseRandom()
         {
-            RandomElement = _model.ChooseRandom();
+            RandomElement = _model.ChooseRandom().Name;
             OnPropertyChanged(nameof(RandomElement));
         }
 
         public void AddElement()
         {
-            _model.Elements.Add(_elementName);
+            _model.AddElement(new ListElement(_elementName));
             OnPropertyChanged(nameof(ContainsElements));
         }
 
-        public void RemoveElement(string elementName)
+        public void RemoveElement(ListElement element)
         {
-            _model.RemoveElement(elementName);
+            _model.RemoveElement(element);
             OnPropertyChanged(nameof(ContainsElements));
         }
 
@@ -89,7 +90,7 @@ namespace RandomIt.ViewModels
             object[] selectedElementsCopy = new object[_selectedElements.Count];
             _selectedElements.CopyTo(selectedElementsCopy, 0);
 
-            foreach(string element in selectedElementsCopy)
+            foreach(ListElement element in selectedElementsCopy)
                 _model.RemoveElement(element);
 
 

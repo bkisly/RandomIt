@@ -15,6 +15,9 @@ namespace RandomIt.Views
         public RandomListElementPage()
         {
             InitializeComponent();
+
+            // TODO: Replace the list of strings to list of ListElement objects
+            // in order to unify every element
         }
 
         private void RandomButton_Clicked(object sender, EventArgs e)
