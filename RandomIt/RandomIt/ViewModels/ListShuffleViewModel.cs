@@ -2,72 +2,70 @@
 using System.Collections.Generic;
 using System.Text;
 using RandomIt.Models;
-using System.ComponentModel;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 
 namespace RandomIt.ViewModels
 {
-    internal class RandomListElementViewModel : INotifyPropertyChanged
+    internal class ListShuffleViewModel : INotifyPropertyChanged
     {
-        private readonly RandomListElementModel _model;
+        private readonly ListShuffleModel _model;
 
         public ObservableCollection<ListElement> Elements { get { return _model.Elements; } }
+        public ObservableCollection<ListElement> ShuffledElements { get; private set; }
+
+        private string _elementName;
+        public string ElementName 
+        {
+            get { return _elementName; }
+            set
+            {
+                _elementName = value;
+                OnPropertyChanged(nameof(IsElementNameNotEmpty));
+            }
+        }
 
         private IList<object> _selectedElements;
         public IList<object> SelectedElements
         {
             get { return _selectedElements; }
-            set
+            set 
             {
                 _selectedElements = value;
                 OnPropertyChanged(nameof(ContainsSelectedElements));
             }
         }
 
-        public string RandomElement { get; private set; }
-
-        private string _elementName;
-        public string ElementName
-        {
-            get { return _elementName; }
-            set 
-            {
-                _elementName = value;
-                OnPropertyChanged(nameof(IsElementNotEmpty));
-            }
-        }
-
         public bool ContainsElements { get { return Elements.Count > 0; } }
-        public bool ContainsSelectedElements
-        {
-            get 
-            {
-                if(_selectedElements == null) return false;
-                return _selectedElements.Count > 0; 
-            }
+        public bool ContainsSelectedElements 
+        { 
+            get { return _selectedElements != null && _selectedElements.Count > 0; } 
         }
-        public bool IsElementNotEmpty { get { return !string.IsNullOrWhiteSpace(_elementName); } }
+        public bool IsElementNameNotEmpty { get { return !string.IsNullOrWhiteSpace(ElementName); } }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public RandomListElementViewModel()
+        public ListShuffleViewModel()
         {
-            _model = new RandomListElementModel();
+            _model = new ListShuffleModel();
+            ShuffledElements = new ObservableCollection<ListElement>();
         }
 
-        public void ChooseRandom()
+        public void Shuffle()
         {
-            RandomElement = _model.ChooseRandom().Name;
-            OnPropertyChanged(nameof(RandomElement));
+            ShuffledElements.Clear();
+            
+            foreach(ListElement element in _model.Shuffle())
+                ShuffledElements.Add(element);
         }
 
         public void AddElement()
         {
-            _model.AddElement(new ListElement(_elementName));
+            _model.AddElement(new ListElement(ElementName));
             OnPropertyChanged(nameof(ContainsElements));
         }
 
-        public void RemoveSelectedElements()
+        public void RemoveSelected()
         {
             object[] selectedElementsCopy = new object[_selectedElements.Count];
             _selectedElements.CopyTo(selectedElementsCopy, 0);
