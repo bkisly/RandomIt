@@ -26,7 +26,7 @@
         </StackLayout>
 
         <CollectionView x:Name="collectionView" SelectionMode="Multiple" ItemsSource="{Binding Elements}"
-                        SelectionChanged="collectionView_SelectionChanged"/>
+                        SelectionChanged="CollectionView_SelectionChanged"/>
 
         <Label Text="{Binding RandomElement}" HorizontalTextAlignment="Center" FontSize="20"/>
         <Button Text="Choose random!" IsEnabled="{Binding ContainsElements}" Clicked="RandomButton_Clicked"/>

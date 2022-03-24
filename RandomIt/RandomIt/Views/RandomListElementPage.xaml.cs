@@ -15,9 +15,6 @@ namespace RandomIt.Views
         public RandomListElementPage()
         {
             InitializeComponent();
-
-            // TODO: Replace the list of strings to list of ListElement objects
-            // in order to unify every element
         }
 
         private void RandomButton_Clicked(object sender, EventArgs e)
@@ -40,7 +37,7 @@ namespace RandomIt.Views
             viewModel.RemoveSelectedElements();
         }
 
-        private void collectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void CollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             viewModel.SelectedElements = collectionView.SelectedItems;
         }

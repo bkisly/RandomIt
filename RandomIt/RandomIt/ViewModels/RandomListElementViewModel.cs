@@ -11,10 +11,7 @@ namespace RandomIt.ViewModels
     {
         private readonly RandomListElementModel _model;
 
-        public ObservableCollection<ListElement> Elements 
-        { 
-            get { return _model.Elements; } 
-        }
+        public ObservableCollection<ListElement> Elements { get { return _model.Elements; } }
 
         private IList<object> _selectedElements;
         public IList<object> SelectedElements
@@ -40,10 +37,7 @@ namespace RandomIt.ViewModels
             }
         }
 
-        public bool ContainsElements
-        {
-            get { return Elements.Count > 0; }
-        }
+        public bool ContainsElements { get { return Elements.Count > 0; } }
         public bool ContainsSelectedElements
         {
             get 
@@ -73,18 +67,6 @@ namespace RandomIt.ViewModels
             OnPropertyChanged(nameof(ContainsElements));
         }
 
-        public void RemoveElement(ListElement element)
-        {
-            _model.RemoveElement(element);
-            OnPropertyChanged(nameof(ContainsElements));
-        }
-
-        public void RemoveElement(int elementId)
-        {
-            _model.RemoveElement(elementId);
-            OnPropertyChanged(nameof(ContainsElements));
-        }
-
         public void RemoveSelectedElements()
         {
             object[] selectedElementsCopy = new object[_selectedElements.Count];
@@ -93,14 +75,14 @@ namespace RandomIt.ViewModels
             foreach(ListElement element in selectedElementsCopy)
                 _model.RemoveElement(element);
 
-
-            OnPropertyChanged(nameof(ContainsSelectedElements));
             OnPropertyChanged(nameof(ContainsElements));
+            OnPropertyChanged(nameof(ContainsSelectedElements));
         }
 
         public void ClearElements()
         {
             _model.ClearElements();
+
             OnPropertyChanged(nameof(ContainsElements));
             OnPropertyChanged(nameof(ContainsSelectedElements));
         }
