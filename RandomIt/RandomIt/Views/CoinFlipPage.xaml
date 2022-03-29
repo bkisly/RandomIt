@@ -1,17 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:RandomIt.ViewModels"
              x:Class="RandomIt.Views.CoinFlipPage"
              Padding="20" Title="Coin flip">
-    <StackLayout Spacing="20" VerticalOptions="Start">
+
+    <ContentPage.Resources>
+        <viewModels:CoinFlipViewModel x:Name="viewModel" x:Key="viewModel"/>
+    </ContentPage.Resources>
+    
+    <StackLayout x:Name="baseLayout" Spacing="20" VerticalOptions="Start" BindingContext="{StaticResource viewModel}">
         <Label Text="Coins amount" FontSize="16"/>
 
         <StackLayout Spacing="10" Orientation="Horizontal">
             <Label HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
                    Text="{Binding Source={x:Reference coinsAmountStepper}, Path=Value}"/>
-            <Stepper x:Name="coinsAmountStepper" Minimum="1" Maximum="10"/>
+            <Stepper x:Name="coinsAmountStepper" Minimum="1" Maximum="10" 
+                     Value="{Binding Amount, Mode=OneWayToSource}"/>
         </StackLayout>
 
-        <Button Text="Flip the coins!"/>
+        <Button Text="Flip the coins!" Clicked="FlipButton_Clicked"/>
     </StackLayout>
 </ContentPage>
