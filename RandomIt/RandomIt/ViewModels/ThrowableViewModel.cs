@@ -7,7 +7,7 @@ using System.Collections.ObjectModel;
 
 namespace RandomIt.ViewModels
 {
-    internal abstract class ThrowableViewModel
+    public abstract class ThrowableViewModel
     {
         private readonly ThrowableModel _model;
 

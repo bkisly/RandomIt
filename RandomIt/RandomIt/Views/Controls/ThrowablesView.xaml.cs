@@ -12,13 +12,13 @@ using RandomIt.ViewModels;
 namespace RandomIt.Views.Controls
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    internal partial class ThrowablesView : StackLayout
+    public partial class ThrowablesView : StackLayout
     {
         private ThrowableViewModel _viewModel;
         private string imagePrefix;
         private IList<int> _results;
 
-        internal ThrowablesView(ThrowableViewModel viewModel)
+        public ThrowablesView(ThrowableViewModel viewModel)
         {
             InitializeComponent();
 

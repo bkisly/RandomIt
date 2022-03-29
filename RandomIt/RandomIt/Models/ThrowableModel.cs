@@ -4,7 +4,7 @@ using System.Text;
 
 namespace RandomIt.Models
 {
-    internal abstract class ThrowableModel
+    public abstract class ThrowableModel
     {
         private readonly Random _random;
         private readonly int _sides;
