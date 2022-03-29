@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RandomIt.UWP", "RandomIt\Ra
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RandomIt.Android", "RandomIt\RandomIt.Android\RandomIt.Android.csproj", "{17F05418-811E-4459-9C47-86A2993C5B6B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RandomIt", "RandomIt\RandomIt\RandomIt.csproj", "{C65DC511-85FF-4001-A50E-BDB2BB769F57}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RandomIt", "RandomIt\RandomIt\RandomIt.csproj", "{C65DC511-85FF-4001-A50E-BDB2BB769F57}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

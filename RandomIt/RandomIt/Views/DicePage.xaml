@@ -1,37 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:RandomIt.ViewModels"
+             xmlns:controls="clr-namespace:RandomIt.Views.Controls"
              x:Class="RandomIt.Views.DicePage"
-             Padding="20" Title="Dice roll">
+             Padding="20" Title="Dice roll" BackgroundColor="LightGray">
 
-    <StackLayout Spacing="20" VerticalOptions="Start">
+    <ContentPage.Resources>
+        <viewModels:DiceRollViewModel x:Name="viewModel" x:Key="viewModel"/>
+    </ContentPage.Resources>
+
+    <StackLayout x:Name="baseLayout" Spacing="20" VerticalOptions="Start" BindingContext="{StaticResource viewModel}">
         <Label Text="Dice amount" FontSize="16"/>
         <StackLayout Orientation="Horizontal" Spacing="10">
             <Label HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="Center"
                    Text="{Binding Source={x:Reference diceAmountStepper}, Path=Value}"/>
-            <Stepper x:Name="diceAmountStepper" Minimum="1" Maximum="10"/>
+            <Stepper x:Name="diceAmountStepper" Value="{Binding Amount}" Minimum="1" Maximum="12"/>
         </StackLayout>
 
-        <Label Text="Dice faces" FontSize="16"/>
-        <StackLayout Orientation="Horizontal" Spacing="10">
-            <Label HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="Center"
-                   Text="{Binding Source={x:Reference diceFacesAmount}, Path=Value}"/>
-            <Stepper x:Name="diceFacesAmount" Minimum="3" Maximum="10"/>
-        </StackLayout>
-
-        <Button Text="Roll the dice!"/>
-
-        <Grid ColumnSpacing="10" RowSpacing="10" BackgroundColor="Aqua">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-        </Grid>
+        <Button Text="Roll the dice!" Clicked="RollButton_Clicked"/>
     </StackLayout>
 </ContentPage>
