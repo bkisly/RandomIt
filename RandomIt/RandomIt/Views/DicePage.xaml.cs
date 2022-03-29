@@ -22,7 +22,7 @@ namespace RandomIt.Views
 
         private void RollButton_Clicked(object sender, EventArgs e)
         {
-            viewModel.Roll();
+            viewModel.Throw();
         }
     }
 }

@@ -26,7 +26,7 @@ namespace RandomIt.ViewModels
             RollResults = new ObservableCollection<int>();
         }
 
-        public void Roll()
+        public void Throw()
         {
             RollResults.Clear();
             

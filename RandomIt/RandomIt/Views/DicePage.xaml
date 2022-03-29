@@ -15,20 +15,9 @@
         <StackLayout Orientation="Horizontal" Spacing="10">
             <Label HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="Center"
                    Text="{Binding Source={x:Reference diceAmountStepper}, Path=Value}"/>
-            <Stepper x:Name="diceAmountStepper" Value="{Binding Amount}" Minimum="1" Maximum="10"/>
-        </StackLayout>
-
-        <Label Text="Dice faces" FontSize="16"/>
-        <StackLayout Orientation="Horizontal" Spacing="10">
-            <Label HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="Center"
-                   Text="{Binding Source={x:Reference diceFacesAmount}, Path=Value}"/>
-            <Stepper x:Name="diceFacesAmount" Minimum="3" Maximum="10"/>
+            <Stepper x:Name="diceAmountStepper" Value="{Binding Amount}" Minimum="1" Maximum="12"/>
         </StackLayout>
 
         <Button Text="Roll the dice!" Clicked="RollButton_Clicked"/>
-
-        <!--
-        <controls:ThrowablesView x:Name="throwablesView" BindingContext="{StaticResource viewModel}"/>
-        -->
     </StackLayout>
 </ContentPage>
