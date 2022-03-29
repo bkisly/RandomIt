@@ -15,7 +15,7 @@ namespace RandomIt.Views.Controls
     public partial class ThrowablesView : StackLayout
     {
         private ThrowableViewModel _viewModel;
-        private string imagePrefix;
+        private readonly string _imagePrefix;
         private IList<int> _results;
 
         public ThrowablesView(ThrowableViewModel viewModel)
@@ -26,7 +26,7 @@ namespace RandomIt.Views.Controls
             _viewModel.ThrowResultsChanged += ViewModel_ThrowResultsChanged;
 
             if (viewModel is DiceRollViewModel)
-                imagePrefix = "dice";
+                _imagePrefix = "Dice";
         }
 
         private void ViewModel_ThrowResultsChanged(object sender, ThrowResultsChangedEventArgs e)
@@ -42,6 +42,8 @@ namespace RandomIt.Views.Controls
 
             for (int i = 0; i < _results.Count(); i++)
             {
+                string imageSource = $"RandomIt.Images.{_imagePrefix}.{_imagePrefix.ToLower()}{_results[i]}.png";
+
                 if (i % 3 == 0)
                 {
                     rowLayout = new StackLayout 
@@ -52,16 +54,21 @@ namespace RandomIt.Views.Controls
                     };
                 }
 
-                rowLayout.Children.Add(GetEmbeddedImage());
+                rowLayout.Children.Add(GetEmbeddedImage(imageSource));
 
                 if (i % 3 == 2 || i == _results.Count() - 1)
                     baseLayout.Children.Add(rowLayout);             
             }
         }
 
-        private static BoxView GetEmbeddedImage()
+        private static Image GetEmbeddedImage(string source)
         {
-            return new BoxView { WidthRequest = 100, HeightRequest = 100, Color = Color.Blue };
+            return new Image 
+            { 
+                WidthRequest = 100, 
+                HeightRequest = 100, 
+                Source = ImageSource.FromResource(source)
+            };
         }
     }
 }

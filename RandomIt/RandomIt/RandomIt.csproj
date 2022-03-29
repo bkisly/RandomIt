@@ -6,6 +6,24 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\Dice\dice1.png" />
+    <None Remove="Images\Dice\dice2.png" />
+    <None Remove="Images\Dice\dice3.png" />
+    <None Remove="Images\Dice\dice4.png" />
+    <None Remove="Images\Dice\dice5.png" />
+    <None Remove="Images\Dice\dice6.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Dice\dice1.png" />
+    <EmbeddedResource Include="Images\Dice\dice2.png" />
+    <EmbeddedResource Include="Images\Dice\dice3.png" />
+    <EmbeddedResource Include="Images\Dice\dice4.png" />
+    <EmbeddedResource Include="Images\Dice\dice5.png" />
+    <EmbeddedResource Include="Images\Dice\dice6.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2196" />  
     <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
   </ItemGroup>
