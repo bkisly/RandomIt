@@ -6,6 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\Coin\coin1.png" />
+    <None Remove="Images\Coin\coin2.png" />
     <None Remove="Images\Dice\dice1.png" />
     <None Remove="Images\Dice\dice2.png" />
     <None Remove="Images\Dice\dice3.png" />
@@ -15,6 +17,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Images\Coin\coin1.png" />
+    <EmbeddedResource Include="Images\Coin\coin2.png" />
     <EmbeddedResource Include="Images\Dice\dice1.png" />
     <EmbeddedResource Include="Images\Dice\dice2.png" />
     <EmbeddedResource Include="Images\Dice\dice3.png" />

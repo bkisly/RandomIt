@@ -27,6 +27,8 @@ namespace RandomIt.Views.Controls
 
             if (viewModel is DiceRollViewModel)
                 _imagePrefix = "Dice";
+            else if (viewModel is CoinFlipViewModel)
+                _imagePrefix = "Coin";
         }
 
         private void ViewModel_ThrowResultsChanged(object sender, ThrowResultsChangedEventArgs e)
