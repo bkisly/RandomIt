@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using System.ComponentModel;
 using RandomIt.ViewModels;
 
 namespace RandomIt.Views.Controls
@@ -14,8 +13,9 @@ namespace RandomIt.Views.Controls
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ThrowablesView : StackLayout
     {
-        private ThrowableViewModel _viewModel;
+        private readonly ThrowableViewModel _viewModel;
         private readonly string _imagePrefix;
+
         private IList<int> _results;
 
         public ThrowablesView(ThrowableViewModel viewModel)
