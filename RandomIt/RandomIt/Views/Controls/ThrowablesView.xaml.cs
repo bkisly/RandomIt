@@ -12,40 +12,44 @@ using RandomIt.ViewModels;
 namespace RandomIt.Views.Controls
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ThrowablesView : ContentPage
+    internal partial class ThrowablesView : StackLayout
     {
         private ThrowableViewModel _viewModel;
         private string imagePrefix;
-        private IEnumerable<int> _results;
+        private IList<int> _results;
 
-        public ThrowablesView()
+        internal ThrowablesView(ThrowableViewModel viewModel)
         {
             InitializeComponent();
 
-            if (BindingContext is ThrowableViewModel)
-            {
-                _viewModel = BindingContext as ThrowableViewModel;
-                _viewModel.RollResults.CollectionChanged += RollResults_CollectionChanged;
+            _viewModel = viewModel;
+            _viewModel.ThrowResultsChanged += ViewModel_ThrowResultsChanged;
 
-                if (BindingContext is DiceRollViewModel)
-                    imagePrefix = "dice";
-            }
+            if (viewModel is DiceRollViewModel)
+                imagePrefix = "dice";
         }
 
-        private void RollResults_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private void ViewModel_ThrowResultsChanged(object sender, ThrowResultsChangedEventArgs e)
         {
-            _results = e.NewItems as IEnumerable<int>;
+            _results = e.ThrowResults.ToList();
+            GenerateLayout();
         }
 
         private void GenerateLayout()
         {
             StackLayout rowLayout = null;
+            baseLayout.Children.Clear();
 
             for (int i = 0; i < _results.Count(); i++)
             {
                 if (i % 3 == 0)
                 {
-                    rowLayout = new StackLayout { Spacing = 10 };
+                    rowLayout = new StackLayout 
+                    { 
+                        Spacing = 10, 
+                        Orientation = StackOrientation.Horizontal,
+                        HorizontalOptions = LayoutOptions.Center,
+                    };
                 }
 
                 rowLayout.Children.Add(GetEmbeddedImage());
