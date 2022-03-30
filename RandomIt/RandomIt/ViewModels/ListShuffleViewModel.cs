@@ -1,53 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using RandomIt.Models;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
+using RandomIt.Models;
 
 namespace RandomIt.ViewModels
 {
-    internal class ListShuffleViewModel : INotifyPropertyChanged
+    internal class ListShuffleViewModel : ListViewModel
     {
-        private readonly ListShuffleModel _model;
+        private readonly new ListShuffleModel _model;
 
-        public ObservableCollection<ListElement> Elements { get { return _model.Elements; } }
         public ObservableCollection<ListElement> ShuffledElements { get; private set; }
 
-        private string _elementName;
-        public string ElementName 
+        public ListShuffleViewModel() : base(new ListShuffleModel())
         {
-            get { return _elementName; }
-            set
-            {
-                _elementName = value;
-                OnPropertyChanged(nameof(IsElementNameNotEmpty));
-            }
-        }
-
-        private IList<object> _selectedElements;
-        public IList<object> SelectedElements
-        {
-            get { return _selectedElements; }
-            set 
-            {
-                _selectedElements = value;
-                OnPropertyChanged(nameof(ContainsSelectedElements));
-            }
-        }
-
-        public bool ContainsElements { get { return Elements.Count > 0; } }
-        public bool ContainsSelectedElements 
-        { 
-            get { return _selectedElements != null && _selectedElements.Count > 0; } 
-        }
-        public bool IsElementNameNotEmpty { get { return !string.IsNullOrWhiteSpace(ElementName); } }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public ListShuffleViewModel()
-        {
-            _model = new ListShuffleModel();
+            _model = base._model as ListShuffleModel;
             ShuffledElements = new ObservableCollection<ListElement>();
         }
 
@@ -57,40 +22,6 @@ namespace RandomIt.ViewModels
             
             foreach(ListElement element in _model.Shuffle())
                 ShuffledElements.Add(element);
-        }
-
-        public void AddElement()
-        {
-            _model.AddElement(new ListElement(ElementName));
-            OnPropertyChanged(nameof(ContainsElements));
-        }
-
-        public void RemoveSelected()
-        {
-            object[] selectedElementsCopy = new object[_selectedElements.Count];
-            _selectedElements.CopyTo(selectedElementsCopy, 0);
-
-            foreach(ListElement element in selectedElementsCopy)
-                _model.RemoveElement(element);
-
-            _selectedElements.Clear();
-
-            OnPropertyChanged(nameof(ContainsElements));
-            OnPropertyChanged(nameof(ContainsSelectedElements));
-        }
-
-        public void ClearElements()
-        {
-            _model.ClearElements();
-            _selectedElements.Clear();
-
-            OnPropertyChanged(nameof(ContainsElements));
-            OnPropertyChanged(nameof(ContainsSelectedElements));
-        }
-
-        private void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

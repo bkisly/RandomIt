@@ -39,7 +39,7 @@ namespace RandomIt.Views
 
         private void RemoveSelected_Button(object sender, EventArgs e)
         {
-            viewModel.RemoveSelected();
+            viewModel.RemoveSelectedElements();
         }
     }
 }

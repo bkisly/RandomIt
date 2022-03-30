@@ -6,26 +6,30 @@ using System.ComponentModel;
 
 namespace RandomIt.ViewModels
 {
-    internal class RandomNumberViewModel : INotifyPropertyChanged
+    internal class RandomNumberViewModel : BindableViewModel
     {
-        private RandomNumberModel _randomNumberModel;
+        private readonly RandomNumberModel _model;
 
         public double MinValue
         {
-            get { return _randomNumberModel.MinValue; }
-            set { _randomNumberModel.MinValue = value; }
+            get { return _model.MinValue; }
+            set { _model.MinValue = value; }
         }
         public double MaxValue
         {
-            get { return _randomNumberModel.MaxValue; }
-            set { _randomNumberModel.MaxValue = value; }
+            get { return _model.MaxValue; }
+            set { _model.MaxValue = value; }
         }
         public int Precision
         {
-            get { return _randomNumberModel.Precision; }
-            set { _randomNumberModel.Precision = value; }
+            get { return _model.Precision; }
+            set 
+            { 
+                _model.Precision = value;
+                OnPropertyChanged(nameof(Increment));
+            }
         }
-        public double GeneratedValue { get; private set; }
+        public double? GeneratedValue { get; private set; }
 
         private bool _floatGeneration;
         public bool FloatGeneration
@@ -47,28 +51,19 @@ namespace RandomIt.ViewModels
              } 
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
         public RandomNumberViewModel()
         {
-            _randomNumberModel = new RandomNumberModel();
+            _model = new RandomNumberModel();
+            GeneratedValue = null;
         }
 
-        public void GenerateRandomInt()
+        public void GenerateRandom()
         {
-            GeneratedValue = _randomNumberModel.GenerateRandomInt();
+            if (_floatGeneration)
+                GeneratedValue = _model.GenerateRandomDouble();
+            else GeneratedValue = _model.GenerateRandomInt();
+
             OnPropertyChanged(nameof(GeneratedValue));
-        }
-
-        public void GenerateRandomDouble()
-        {
-            GeneratedValue = _randomNumberModel.GenerateRandomDouble();
-            OnPropertyChanged(nameof(GeneratedValue));
-        }
-
-        private void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

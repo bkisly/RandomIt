@@ -1,18 +1,13 @@
 ﻿using System;
-using System.Collections.ObjectModel;
-using System.Collections.Generic;
-using System.Text;
 
 namespace RandomIt.Models
 {
-    internal class RandomListElementModel
+    internal class RandomListElementModel : ListModel
     {
-        private  readonly Random _random;
-        public ObservableCollection<ListElement> Elements { get; private set; }
+        private readonly Random _random;
 
-        public RandomListElementModel()
+        public RandomListElementModel() : base()
         {
-            Elements = new ObservableCollection<ListElement>();
             _random = new Random();
         }
 
@@ -20,22 +15,6 @@ namespace RandomIt.Models
         {
             int elementIndex = _random.Next(Elements.Count);
             return Elements[elementIndex];
-        }
-
-        public void AddElement(ListElement element)
-        {
-            Elements.Add(element);
-        }
-
-        public void RemoveElement(ListElement element)
-        {
-            if (Elements.Contains(element))
-                Elements.Remove(element);
-        }
-
-        public void ClearElements()
-        {
-            Elements.Clear();
         }
     }
 }

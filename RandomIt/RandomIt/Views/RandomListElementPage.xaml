@@ -15,7 +15,7 @@
         <StackLayout Spacing="10" Orientation="Horizontal">
             <Entry x:Name="elementNameEntry" Placeholder="Type element name..." HorizontalOptions="FillAndExpand"
                    Text="{Binding ElementName, Mode=OneWayToSource}"/>
-            <Button Text="Add" Clicked="AddButton_Clicked" IsEnabled="{Binding IsElementNotEmpty}"/>
+            <Button Text="Add" Clicked="AddButton_Clicked" IsEnabled="{Binding IsElementNameNotEmpty}"/>
         </StackLayout>
 
         <StackLayout Spacing="10" Orientation="Horizontal">
