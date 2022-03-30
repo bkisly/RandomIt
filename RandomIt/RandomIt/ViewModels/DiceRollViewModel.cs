@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using RandomIt.Models;
+﻿using RandomIt.Models;
 
 namespace RandomIt.ViewModels
 {

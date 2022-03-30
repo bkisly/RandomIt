@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using RandomIt.Models;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
+using RandomIt.Models;
 
 namespace RandomIt.ViewModels
 {
@@ -14,6 +11,17 @@ namespace RandomIt.ViewModels
         public ObservableCollection<ListElement> Elements { get { return _model.Elements; } }
         public ObservableCollection<ListElement> ShuffledElements { get; private set; }
 
+        private IList<object> _selectedElements;
+        public IList<object> SelectedElements
+        {
+            get { return _selectedElements; }
+            set
+            {
+                _selectedElements = value;
+                OnPropertyChanged(nameof(ContainsSelectedElements));
+            }
+        }
+
         private string _elementName;
         public string ElementName 
         {
@@ -22,17 +30,6 @@ namespace RandomIt.ViewModels
             {
                 _elementName = value;
                 OnPropertyChanged(nameof(IsElementNameNotEmpty));
-            }
-        }
-
-        private IList<object> _selectedElements;
-        public IList<object> SelectedElements
-        {
-            get { return _selectedElements; }
-            set 
-            {
-                _selectedElements = value;
-                OnPropertyChanged(nameof(ContainsSelectedElements));
             }
         }
 

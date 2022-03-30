@@ -24,7 +24,7 @@ namespace RandomIt.Views
 
         private async void CopyButton_Clicked(object sender, EventArgs e)
         {
-            await viewModel.CopyPasswordToClipboard();
+            await viewModel.CopyToClipboardAsync();
             await DisplayAlert("Copied!", "The password has been successfully copied!", "OK");
         }
     }

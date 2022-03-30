@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using RandomIt.Models;
-using System.ComponentModel;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using RandomIt.Models;
 
 namespace RandomIt.ViewModels
 {

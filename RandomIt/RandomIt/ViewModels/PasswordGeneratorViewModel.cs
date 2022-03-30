@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using RandomIt.Models;
-using System.ComponentModel;
+﻿using System.Threading.Tasks;
 using Xamarin.Essentials;
-using System.Threading.Tasks;
+using RandomIt.Models;
 
 namespace RandomIt.ViewModels
 {
@@ -18,7 +14,7 @@ namespace RandomIt.ViewModels
             set 
             { 
                 _model.IncludeUppercase = value;
-                OnPropertyChanged(nameof(PasswordGenerationPosible));
+                OnPropertyChanged(nameof(PasswordGenerationPossible));
             }
         }
         public bool IncludeLowercase
@@ -27,7 +23,7 @@ namespace RandomIt.ViewModels
             set 
             { 
                 _model.IncludeLowercase = value;
-                OnPropertyChanged(nameof(PasswordGenerationPosible));
+                OnPropertyChanged(nameof(PasswordGenerationPossible));
             }
         }
         public bool IncludeNumbers
@@ -36,7 +32,7 @@ namespace RandomIt.ViewModels
             set 
             { 
                 _model.IncludeNumbers = value;
-                OnPropertyChanged(nameof(PasswordGenerationPosible));
+                OnPropertyChanged(nameof(PasswordGenerationPossible));
             }
         }
         public bool IncludeSymbols
@@ -45,7 +41,7 @@ namespace RandomIt.ViewModels
             set 
             { 
                 _model.IncludeSymbols = value;
-                OnPropertyChanged(nameof(PasswordGenerationPosible));
+                OnPropertyChanged(nameof(PasswordGenerationPossible));
             }
         }
         public int PasswordLength
@@ -55,12 +51,11 @@ namespace RandomIt.ViewModels
         }
 
         public string GeneratedPassword { get; private set; }
-        public bool PasswordGenerationPosible
+        public bool PasswordGenerationPossible
         {
             get
-            {
-                bool possible = IncludeUppercase || IncludeLowercase || IncludeNumbers || IncludeSymbols;
-                return possible;
+            {        
+                return IncludeUppercase || IncludeLowercase || IncludeNumbers || IncludeSymbols;
             }
         }
 
@@ -75,7 +70,7 @@ namespace RandomIt.ViewModels
             OnPropertyChanged(nameof(GeneratedPassword));
         }
 
-        public async Task CopyPasswordToClipboard()
+        public async Task CopyToClipboardAsync()
         {
             await Clipboard.SetTextAsync(GeneratedPassword);
         }
