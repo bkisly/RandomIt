@@ -1,16 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace RandomIt.Models
 {
     internal class RandomNumberModel
     {
+        private readonly Random _random;
+
         public double MinValue { get; set; }
         public double MaxValue { get; set; }
         public int Precision { get; set; }
-
-        private Random _random;
 
         public RandomNumberModel()
         {

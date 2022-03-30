@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace RandomIt.Models
+﻿namespace RandomIt.Models
 {
     internal class DiceRollModel : ThrowableModel
     {
