@@ -23,9 +23,13 @@ namespace RandomIt.ViewModels
         public int Precision
         {
             get { return _model.Precision; }
-            set { _model.Precision = value; }
+            set 
+            { 
+                _model.Precision = value;
+                OnPropertyChanged(nameof(Increment));
+            }
         }
-        public double GeneratedValue { get; private set; }
+        public double? GeneratedValue { get; private set; }
 
         private bool _floatGeneration;
         public bool FloatGeneration
@@ -50,17 +54,15 @@ namespace RandomIt.ViewModels
         public RandomNumberViewModel()
         {
             _model = new RandomNumberModel();
+            GeneratedValue = null;
         }
 
-        public void GenerateRandomInt()
+        public void GenerateRandom()
         {
-            GeneratedValue = _model.GenerateRandomInt();
-            OnPropertyChanged(nameof(GeneratedValue));
-        }
+            if (_floatGeneration)
+                GeneratedValue = _model.GenerateRandomDouble();
+            else GeneratedValue = _model.GenerateRandomInt();
 
-        public void GenerateRandomDouble()
-        {
-            GeneratedValue = _model.GenerateRandomDouble();
             OnPropertyChanged(nameof(GeneratedValue));
         }
     }
