@@ -1,18 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 
 namespace RandomIt.Models
 {
-    internal class ListShuffleModel
+    internal class ListShuffleModel : ListModel
     {
         private readonly Random _random;
-        public ObservableCollection<ListElement> Elements { get; private set; }
 
-        public ListShuffleModel()
+        public ListShuffleModel() : base()
         {
             _random = new Random();
-            Elements = new ObservableCollection<ListElement>();
         }
 
         public IEnumerable<ListElement> Shuffle()
@@ -28,21 +25,6 @@ namespace RandomIt.Models
             }
 
             return shuffledElements;
-        }
-
-        public void AddElement(ListElement element)
-        {
-            Elements.Add(element);
-        }
-
-        public void RemoveElement(ListElement element)
-        {
-            if (Elements.Contains(element))
-                Elements.Remove(element);
-        }
-        public void ClearElements()
-        {
-            Elements.Clear();
         }
     }
 }
