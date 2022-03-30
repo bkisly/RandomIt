@@ -6,24 +6,24 @@ using System.ComponentModel;
 
 namespace RandomIt.ViewModels
 {
-    internal class RandomNumberViewModel : INotifyPropertyChanged
+    internal class RandomNumberViewModel : BindableViewModel
     {
-        private RandomNumberModel _randomNumberModel;
+        private readonly RandomNumberModel _model;
 
         public double MinValue
         {
-            get { return _randomNumberModel.MinValue; }
-            set { _randomNumberModel.MinValue = value; }
+            get { return _model.MinValue; }
+            set { _model.MinValue = value; }
         }
         public double MaxValue
         {
-            get { return _randomNumberModel.MaxValue; }
-            set { _randomNumberModel.MaxValue = value; }
+            get { return _model.MaxValue; }
+            set { _model.MaxValue = value; }
         }
         public int Precision
         {
-            get { return _randomNumberModel.Precision; }
-            set { _randomNumberModel.Precision = value; }
+            get { return _model.Precision; }
+            set { _model.Precision = value; }
         }
         public double GeneratedValue { get; private set; }
 
@@ -47,28 +47,21 @@ namespace RandomIt.ViewModels
              } 
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
         public RandomNumberViewModel()
         {
-            _randomNumberModel = new RandomNumberModel();
+            _model = new RandomNumberModel();
         }
 
         public void GenerateRandomInt()
         {
-            GeneratedValue = _randomNumberModel.GenerateRandomInt();
+            GeneratedValue = _model.GenerateRandomInt();
             OnPropertyChanged(nameof(GeneratedValue));
         }
 
         public void GenerateRandomDouble()
         {
-            GeneratedValue = _randomNumberModel.GenerateRandomDouble();
+            GeneratedValue = _model.GenerateRandomDouble();
             OnPropertyChanged(nameof(GeneratedValue));
-        }
-
-        private void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

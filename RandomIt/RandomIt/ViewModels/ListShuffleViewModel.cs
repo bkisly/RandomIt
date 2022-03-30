@@ -7,7 +7,7 @@ using System.ComponentModel;
 
 namespace RandomIt.ViewModels
 {
-    internal class ListShuffleViewModel : INotifyPropertyChanged
+    internal class ListShuffleViewModel : BindableViewModel
     {
         private readonly ListShuffleModel _model;
 
@@ -42,8 +42,6 @@ namespace RandomIt.ViewModels
             get { return _selectedElements != null && _selectedElements.Count > 0; } 
         }
         public bool IsElementNameNotEmpty { get { return !string.IsNullOrWhiteSpace(ElementName); } }
-
-        public event PropertyChangedEventHandler PropertyChanged;
 
         public ListShuffleViewModel()
         {
@@ -86,11 +84,6 @@ namespace RandomIt.ViewModels
 
             OnPropertyChanged(nameof(ContainsElements));
             OnPropertyChanged(nameof(ContainsSelectedElements));
-        }
-
-        private void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

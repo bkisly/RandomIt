@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace RandomIt.ViewModels
 {
-    internal class PasswordGeneratorViewModel : INotifyPropertyChanged
+    internal class PasswordGeneratorViewModel : BindableViewModel
     {
         private readonly PasswordGeneratorModel _model;
 
@@ -64,8 +64,6 @@ namespace RandomIt.ViewModels
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
         public PasswordGeneratorViewModel()
         {
             _model = new PasswordGeneratorModel();
@@ -80,11 +78,6 @@ namespace RandomIt.ViewModels
         public async Task CopyPasswordToClipboard()
         {
             await Clipboard.SetTextAsync(GeneratedPassword);
-        }
-
-        private void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
