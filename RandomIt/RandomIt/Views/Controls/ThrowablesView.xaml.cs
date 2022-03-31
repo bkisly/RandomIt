@@ -17,7 +17,7 @@ namespace RandomIt.Views.Controls
         private readonly ThrowableViewModel _viewModel;
         private readonly string _imagePrefix;
 
-        private List<Image> _images;
+        private readonly List<Image> _images;
         private IList<int> _results;
 
         public ThrowablesView(ThrowableViewModel viewModel)
