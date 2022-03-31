@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
@@ -16,6 +17,7 @@ namespace RandomIt.Views.Controls
         private readonly ThrowableViewModel _viewModel;
         private readonly string _imagePrefix;
 
+        private List<Image> _images;
         private IList<int> _results;
 
         public ThrowablesView(ThrowableViewModel viewModel)
@@ -29,18 +31,22 @@ namespace RandomIt.Views.Controls
                 _imagePrefix = "Dice";
             else if (viewModel is CoinFlipViewModel)
                 _imagePrefix = "Coin";
+
+            _images = new List<Image>();
         }
 
-        private void ViewModel_ThrowResultsChanged(object sender, ThrowResultsChangedEventArgs e)
+        private async void ViewModel_ThrowResultsChanged(object sender, ThrowResultsChangedEventArgs e)
         {
             _results = e.ThrowResults.ToList();
             GenerateLayout();
+            await AnimateLayoutAsync();
         }
 
         private void GenerateLayout()
         {
             StackLayout rowLayout = null;
             baseLayout.Children.Clear();
+            _images.Clear();
 
             for (int i = 0; i < _results.Count(); i++)
             {
@@ -56,10 +62,26 @@ namespace RandomIt.Views.Controls
                     };
                 }
 
-                rowLayout.Children.Add(GetEmbeddedImage(imageSource));
+                Image embeddedImage = GetEmbeddedImage(imageSource);
+                rowLayout.Children.Add(embeddedImage);
+                _images.Add(embeddedImage);
 
                 if (i % 3 == 2 || i == _results.Count() - 1)
                     baseLayout.Children.Add(rowLayout);             
+            }
+        }
+
+        private async Task AnimateLayoutAsync()
+        {
+            Image[] imagesCopy = new Image[_images.Count];
+            _images.CopyTo(imagesCopy);
+
+            foreach(Image image in imagesCopy)
+            {
+                await Task.WhenAny(
+                    image.FadeTo(1, 200), 
+                    image.ScaleTo(1, 300, Easing.CubicOut), 
+                    Task.Delay(100));
             }
         }
 
@@ -69,7 +91,9 @@ namespace RandomIt.Views.Controls
             { 
                 WidthRequest = 100, 
                 HeightRequest = 100, 
-                Source = ImageSource.FromResource(source)
+                Source = ImageSource.FromResource(source),
+                Scale = 0.5,
+                Opacity = 0
             };
         }
     }
