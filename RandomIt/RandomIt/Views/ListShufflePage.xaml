@@ -21,6 +21,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="2*"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="3*"/>
             </Grid.RowDefinitions>
 
@@ -29,14 +30,15 @@
 
             <StackLayout Orientation="Horizontal" Grid.Row="1" Spacing="10">
                 <Button Text="Clear elements" Clicked="ClearButton_Clicked" 
-                        IsEnabled="{Binding ContainsElements}"/>
-                <Button Text="Shuffle!" Grid.Row="1" Clicked="ShuffleButton_Clicked" 
-                        IsEnabled="{Binding ContainsElements}"/>
-                <Button Text="Remove selected" Clicked="RemoveSelected_Button" 
+                        IsEnabled="{Binding ContainsElements}" HorizontalOptions="FillAndExpand"/>
+                <Button Text="Remove selected" Clicked="RemoveSelected_Button" HorizontalOptions="FillAndExpand"
                         IsEnabled="{Binding ContainsSelectedElements}"/>
             </StackLayout>
 
-            <ListView SelectionMode="None" Grid.Row="2" ItemsSource="{Binding ShuffledElements}"/>
+            <Button Text="Shuffle!" Grid.Row="2" Clicked="ShuffleButton_Clicked" 
+                        IsEnabled="{Binding ContainsElements}"/>
+
+            <ListView SelectionMode="None" Grid.Row="3" ItemsSource="{Binding ShuffledElements}"/>
         </Grid>
     </StackLayout>
 </ContentPage>

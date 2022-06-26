@@ -30,10 +30,10 @@ namespace RandomIt.Models
             return false;
         }
 
-        public static IEnumerable<char> GetChars(int asciiBegin, int asciiEnd)
+        public static IEnumerable<char> GetChars(char asciiBegin, char asciiEnd)
         {
-            for (int i = asciiBegin; i <= asciiEnd; i++)
-                yield return (char)i;
+            for (char c = asciiBegin; c <= asciiEnd; c++)
+                yield return c;
         }
 
         public static IEnumerable<char> GetChars(CharGroup charGroup)
@@ -41,20 +41,20 @@ namespace RandomIt.Models
             switch (charGroup)
             {
                 case CharGroup.Uppercase:
-                    return GetChars(65, 90);
+                    return GetChars('A', 'Z');
                 case CharGroup.Lowercase:
-                    return GetChars(97, 122);
+                    return GetChars('a', 'z');
                 case CharGroup.Numbers:
-                    return GetChars(48, 57);
+                    return GetChars('0', '9');
                 case CharGroup.Symbols:
                     List<char> chars = new List<char>();
 
-                    for (int i = 33; i <= 126; i++)
+                    for (char c = '!'; c <= '~'; c++)
                     {
-                        if ((i >= 48 && i <= 59) || (i >= 65 && i <= 90) || (i >= 97 && i <= 122))
+                        if ((c >= '0' && c <= '9') || (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
                             continue;
 
-                        chars.Add((char)i);
+                        chars.Add(c);
                     }
 
                     return chars;
