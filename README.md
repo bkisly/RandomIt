@@ -7,7 +7,7 @@ Randomization tool for Android and Windows. It helps generating different kinds 
 <img src="Screenshots/sc3.png" width="345" height="733"/>
 <img src="Screenshots/sc4.png" width="345" height="733"/>
 
-![Windows, password generator](/Screenshots/sc1.png) ![Windows, dice roll](/Screenshots/sc1.png)
+![Windows, password generator](/Screenshots/sc1.png) ![Windows, dice roll](/Screenshots/sc2.png)
 
 ## Future of the project
 
