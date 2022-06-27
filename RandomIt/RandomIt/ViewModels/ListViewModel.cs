@@ -71,7 +71,7 @@ namespace RandomIt.ViewModels
         public void ClearElements()
         {
             _model.ClearElements();
-            _selectedElements.Clear();
+            _selectedElements?.Clear();
 
             OnPropertyChanged(nameof(ContainsElements));
             OnPropertyChanged(nameof(ContainsSelectedElements));

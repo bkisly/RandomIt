@@ -8,13 +8,13 @@
 
   <Identity
     Name="F30E69CB-5582-4E88-B5D6-C65EEF260D16"
-    Publisher="CN=DD41BFDB-AD8F-48CF-8C15-E6D7627DEF59"
-    Version="1.0.0.0" />
+    Publisher="CN=Bartosz Kisły"
+    Version="0.1.3.0" />
 
   <mp:PhoneIdentity PhoneProductId="ec0cc741-fd3e-485c-81be-68815c480690" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
-    <DisplayName>RandomIt.UWP</DisplayName>
+    <DisplayName>RandomIt</DisplayName>
     <PublisherDisplayName>DD41BFDB-AD8F-48CF-8C15-E6D7627DEF59</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
@@ -32,7 +32,7 @@
       Executable="$targetnametoken$.exe"
       EntryPoint="RandomIt.UWP.App">
       <uap:VisualElements
-        DisplayName="RandomIt.UWP"
+        DisplayName="RandomIt"
         Square150x150Logo="Assets\Square150x150Logo.png"
         Square44x44Logo="Assets\Square44x44Logo.png"
         Description="RandomIt.UWP"
@@ -48,8 +48,4 @@
       </uap:VisualElements>
     </Application>
   </Applications>
-
-  <Capabilities>
-    <Capability Name="internetClient" />
-  </Capabilities>
 </Package>
